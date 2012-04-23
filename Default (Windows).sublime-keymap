@@ -1,0 +1,4 @@
+[
+	{ "keys": ["alt+u"], "command": "svn_update" },
+	{ "keys": ["alt+c"], "command": "svn_commit" }
+]

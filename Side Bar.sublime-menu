@@ -1,0 +1,6 @@
+[
+	{ "caption": "-" },
+	{ "caption": "Tortoise Update...", "command": "svn_update", "args": {"paths":[]}},
+	{ "caption": "Tortoise Commit...", "command": "svn_commit", "args": {"paths":[]}},
+	{ "caption": "-", "id": "end" }
+]
