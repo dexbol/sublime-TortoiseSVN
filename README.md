@@ -11,8 +11,8 @@ Usage
 your can install it by [Sublime Package Control](http://wbond.net/sublime_packages/package_control),
 then configure TortoiseSVN.sublime-settings.
 
-alt+c : commit current file. 
-alt+u : update current file. 
+- [alt+c] : commit current file. 
+- [alt+u] : update current file. 
 
 Right click folder or file in SiderBar can commit/update also.
 
