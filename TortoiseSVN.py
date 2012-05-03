@@ -5,7 +5,7 @@ import os
 def execut_command(command,path):
 	settings = sublime.load_settings('TortoiseSVN.sublime-settings')
 	tortoiseproc = settings.get('tortoiseproc_path');
-	cmd = '"%s" /command:%s /path:%s' % (tortoiseproc, command, path)
+	cmd = '"%s" /closeonend:3 /command:%s /path:%s' % (tortoiseproc, command, path)
 	os.popen(cmd)
 
 class SvnUpdateCommand(sublime_plugin.TextCommand):
