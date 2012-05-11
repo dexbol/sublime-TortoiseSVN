@@ -16,6 +16,8 @@ class SvnUpdateCommand(sublime_plugin.TextCommand):
 			dir = self.view.file_name()
 
 		execut_command('update', dir)
+		if not paths:
+			sublime.set_timeout(lambda: self.view.run_command('revert'), 100)		
 
 class SvnCommitCommand(sublime_plugin.TextCommand):
 	def run(self, edit, paths=None):
