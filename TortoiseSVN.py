@@ -29,7 +29,6 @@ class SvnUpdateCommand(sublime_plugin.TextCommand):
 		sublime.set_timeout(self.revertPoint, 10)
 
 	def revertPoint(self):
-		print self.lastLine
 		self.view.window().run_command('goto_line',{'line':self.lastLine})
 
 
