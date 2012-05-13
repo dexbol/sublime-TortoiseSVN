@@ -8,6 +8,8 @@ def execut_command(command,path):
 	cmd = '"%s" /closeonend:3 /command:%s /path:%s' % (tortoiseproc, command, path)
 	os.popen(cmd)
 
+
+
 class SvnUpdateCommand(sublime_plugin.TextCommand):
 	def run(self, edit, paths=None):
 		if paths:
@@ -15,9 +17,22 @@ class SvnUpdateCommand(sublime_plugin.TextCommand):
 		else:
 			dir = self.view.file_name()
 
-		execut_command('update', dir)
+		execut_command('update', dir)	
+		(row,col) = self.view.rowcol(self.view.sel()[0].begin())
+		self.lastLine = str(row + 1);
+
 		if not paths:
-			sublime.set_timeout(lambda: self.view.run_command('revert'), 100)		
+			sublime.set_timeout(self.revert, 100)
+
+	def revert(self):
+		self.view.run_command('revert')
+		sublime.set_timeout(self.revertPoint, 10)
+
+	def revertPoint(self):
+		print self.lastLine
+		self.view.window().run_command('goto_line',{'line':self.lastLine})
+
+
 
 class SvnCommitCommand(sublime_plugin.TextCommand):
 	def run(self, edit, paths=None):
