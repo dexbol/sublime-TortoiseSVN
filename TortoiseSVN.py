@@ -2,10 +2,6 @@ import sublime
 import sublime_plugin
 import os
 import subprocess
-import logging
-
-
-logging.basicConfig(level=logging.DEBUG)
 
 
 def _svn_command(command, path):
