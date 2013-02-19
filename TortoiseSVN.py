@@ -2,24 +2,36 @@ import sublime
 import sublime_plugin
 import os
 import subprocess
+import logging
 
 
-def execut_command(command,path):
+logging.basicConfig(level=logging.DEBUG)
+
+
+def _svn_command(command, path):
 	settings = sublime.load_settings('TortoiseSVN.sublime-settings')
-	tortoiseproc = settings.get('tortoiseproc_path');
-	cmd = [tortoiseproc, '/closeonend:3', ('/command:' + command), ('/path:' + path)]
-	#cmd = '"%s" /closeonend:3 /command:%s /path:%s' % (tortoiseproc, command, path)
-	popen = subprocess.Popen(cmd)
-	popen.communicate()
+	tortoiseproc_path = settings.get('tortoiseproc_path')
+
+	if not os.path.isfile(tortoiseproc_path):
+		sublime.error_message(''.join(['can\'t find TortoiseProc.exe,',
+			' please config setting file', '\n   --sublime-TortoiseSVN']))
+		raise
+
+	proce = subprocess.Popen([tortoiseproc_path, '/closeonend:3', 
+		'/command:' + command, '/path:' + path], stdout=subprocess.PIPE)
+	proce.communicate()
+
 
 class SvnUpdateCommand(sublime_plugin.TextCommand):
+
 	def run(self, edit, paths=None):
 		if paths:
 			dir = '*'.join(paths)
 		else:
 			dir = self.view.file_name()
 
-		execut_command('update', dir)
+		_svn_command('update', dir)
+		print 'over too'
 		(row,col) = self.view.rowcol(self.view.sel()[0].begin())
 		self.lastLine = str(row + 1);
 
@@ -34,13 +46,24 @@ class SvnUpdateCommand(sublime_plugin.TextCommand):
 		self.view.window().run_command('goto_line',{'line':self.lastLine})
 
 
-
 class SvnCommitCommand(sublime_plugin.TextCommand):
+
 	def run(self, edit, paths=None):
 		if paths:
 			dir = '*'.join(paths)
 		else:
 			dir = self.view.file_name()
 
-		execut_command('commit', dir)
+		_svn_command('commit', dir)
 
+
+class SvnLogCommand(sublime_plugin.TextCommand):
+
+	def run(self, edit):
+		_svn_command('log', self.view.file_name())
+
+
+class SvnDiffCommand(sublime_plugin.TextCommand):
+
+	def run(self, edit):
+		_svn_command('diff', self.view.file_name())
