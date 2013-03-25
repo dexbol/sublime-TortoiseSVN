@@ -27,7 +27,7 @@ class SvnUpdateCommand(sublime_plugin.TextCommand):
 			dir = self.view.file_name()
 
 		_svn_command('update', dir)
-		print ('over too')
+
 		(row,col) = self.view.rowcol(self.view.sel()[0].begin())
 		self.lastLine = str(row + 1);
 
