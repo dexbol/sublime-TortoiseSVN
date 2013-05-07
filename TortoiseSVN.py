@@ -13,8 +13,8 @@ def _svn_command(command, path):
 			' please config setting file', '\n   --sublime-TortoiseSVN']))
 		raise
 
-	proce = subprocess.Popen([tortoiseproc_path, '/closeonend:3', 
-		'/command:' + command, '/path:' + path], stdout=subprocess.PIPE)
+	proce = subprocess.Popen('"' + tortoiseproc_path + '"' + ' /closeonend:3' + 
+		' /command:' + command + ' /path:"%s"' % path , stdout=subprocess.PIPE)
 	proce.communicate()
 
 
