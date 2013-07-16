@@ -1,6 +1,7 @@
 [
 	{ "caption": "-" },
-	{ "caption": "TortoiseSVN Update...", "command": "svn_update", "args": {"paths":[]}},
-	{ "caption": "TortoiseSVN Commit...", "command": "svn_commit", "args": {"paths":[]}},
+	{ "caption": "TortoiseSVN Update", "command": "svn_update", "args": {"paths":[]}},
+	{ "caption": "TortoiseSVN Commit", "command": "svn_commit", "args": {"paths":[]}},
+	{ "caption": "TortoiseSVN Log", "command": "svn_log", "args": {"paths":[]}},
 	{ "caption": "-", "id": "end" }
 ]

@@ -54,8 +54,13 @@ class SvnCommitCommand(sublime_plugin.TextCommand):
 
 class SvnLogCommand(sublime_plugin.TextCommand):
 
-	def run(self, edit):
-		_svn_command('log', self.view.file_name())
+	def run(self, edit, paths=None):
+		if paths:
+			dir = '*'.join(paths)
+		else:
+			dir = self.view.file_name()
+
+		_svn_command('log', dir)
 
 
 class SvnDiffCommand(sublime_plugin.TextCommand):
