@@ -15,7 +15,6 @@ def _svn_command(command, path):
 
 	proce = subprocess.Popen('"' + tortoiseproc_path + '"' + ' /closeonend:3' + 
 		' /command:' + command + ' /path:"%s"' % path , stdout=subprocess.PIPE)
-	proce.communicate()
 
 class SvnUpdateCommand(sublime_plugin.TextCommand):
 
