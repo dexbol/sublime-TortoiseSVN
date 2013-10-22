@@ -13,6 +13,7 @@ then configure TortoiseSVN.sublime-settings.
 
 - [alt+c] : commit current file. 
 - [alt+u] : update current file. 
+- [alt+r] : revert current file.
 
 Right click folder or file in SiderBar can commit/update also.
 
