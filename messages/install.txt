@@ -1,0 +1,37 @@
+Sublime-TortoiseSVN
+=============
+
+Sublime-TortoiseSVN is tiny and simple plugin for sublime text. It's behavior seems subclipse in Eclipse. It's need TortoiseSVN and TortoiseSVN command line tools(TortoiseProc.exe) in Windows
+
+
+Usage
+=============
+
+your can install it by Sublime Package Control, then configure TortoiseSVN.sublime-settings.
+
+- [alt+c] : commit current file.
+- [alt+u] : update current file.
+- [alt+r] : revert current file.
+
+Right click folder or file in SiderBar can commit/update also.
+
+
+IMPORTANT
+==============
+
+Do NOT edit the default Sublime-TortoiseSVN settings. Your changes will be lost
+when Sublime-TortoiseSVN is updated. ALWAYS edit the user Sublime-TortoiseSVN settings
+by selecting "Preferences->Package Settings->TortoiseSVN->Settings - User".
+Note that individual settings you include in your user settings will **completely**
+replace the corresponding default setting, so you must provide that setting in its entirety.
+
+Settings
+==============
+
+If your TortoiseProc.exe path not default. Please modify the path into  [Settings - User].
+
+The default settings:
+
+	{
+		"tortoiseproc_path": "C:\\Program Files\\TortoiseSVN\\bin\\TortoiseProc.exe"
+	}
