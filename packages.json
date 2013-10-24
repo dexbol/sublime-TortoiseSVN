@@ -8,8 +8,6 @@
 			"homepage": "https://github.com/dexbol/sublime-TortoiseSVN",
 			"releases": [
 				{
-					// Could also be >2999 for ST3. Leaving this out indicates
-					// the package works with both ST2 and ST3.
 					"sublime_text": "<3000",
 					"platforms": "windows",
 					"details": "https://github.com/dexbol/sublime-TortoiseSVN"
