@@ -6,6 +6,7 @@
 			"details": "https://github.com/dexbol/sublime-TortoiseSVN"
 			"releases": [
 				{
+					"version":"1.1.1",
 					"sublime_text": "<3000",
 					"platforms": "windows",
 					"details": "https://github.com/dexbol/sublime-TortoiseSVN/master"
