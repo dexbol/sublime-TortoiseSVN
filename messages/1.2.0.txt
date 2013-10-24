@@ -1,0 +1,9 @@
+Sublime-TortoiseSVN 1.2.0 changelog
+=============================
+
+NEW FEATURES
+------------
+
+- Add "TortoiseSVN Revert" command.  
+  Shortcuts: [Alt+r]
+- Add "TortoiseSVN Log" command.
