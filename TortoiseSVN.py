@@ -21,10 +21,10 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
 		proce = subprocess.Popen('"' + tortoiseproc_path + '"' + ' /closeonend:3' + 
 			' /command:' + cmd + ' /path:"%s"' % dir , stdout=subprocess.PIPE)
 
-  		# This is required, cause of ST must wait TortoiseSVN update then revert
-        # the file. Otherwise the file reverting occur before SVN update, if the
-        # file changed the file content in ST is older.
-        proce.communicate()
+		# This is required, cause of ST must wait TortoiseSVN update then revert
+		# the file. Otherwise the file reverting occur before SVN update, if the
+		# file changed the file content in ST is older.
+		proce.communicate()
 
 
 class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
