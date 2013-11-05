@@ -1,14 +1,16 @@
 import sublime
 import sublime_plugin
 import os
+import os.path
 import subprocess
 
-class TortoiseSvnCommand(sublime_plugin.TextCommand):
-	def run(self, cmd, paths=None):
+class TortoiseSvnCommand(sublime_plugin.WindowCommand):
+	def run(self, cmd, view, paths=None):
 		if paths:
 			dir = '*'.join(paths)
 		else:
-			dir = self.view.file_name()
+			dir = view.file_name()
+
 
 		settings = sublime.load_settings('TortoiseSVN.sublime-settings')
 		tortoiseproc_path = settings.get('tortoiseproc_path')
@@ -28,13 +30,13 @@ class TortoiseSvnCommand(sublime_plugin.TextCommand):
 
 
 class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
-	def run(self, cmd, paths=None):
-		TortoiseSvnCommand.run(self, cmd, paths)
-
-		(row,col) = self.view.rowcol(self.view.sel()[0].begin())
-		self.lastLine = str(row + 1);
-
-		if not paths:
+	def run(self, cmd, paths=None, isRevertView=False):
+		self.view = sublime.active_window().active_view()
+		TortoiseSvnCommand.run(self, cmd, self.view, paths)
+		
+		if isRevertView :
+			(row,col) = self.view.rowcol(self.view.sel()[0].begin())
+			self.lastLine = str(row + 1);
 			sublime.set_timeout(self.revert, 100)
 
 	def revert(self):
@@ -46,30 +48,37 @@ class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
 
 
 class SvnUpdateCommand(MutatingTortoiseSvnCommand):
-	def run(self, edit, paths=None):
-		MutatingTortoiseSvnCommand.run(self, 'update', paths)
+	def run(self, paths=None):
+		MutatingTortoiseSvnCommand.run(self, 'update', paths, True)
 
 
 class SvnCommitCommand(TortoiseSvnCommand):
-	def run(self, edit, paths=None):
+	def run(self, paths=None):
 		TortoiseSvnCommand.run(self, 'commit', paths)
 
 
 class SvnRevertCommand(MutatingTortoiseSvnCommand):
-	def run(self, edit, paths=None):
-		MutatingTortoiseSvnCommand.run(self, 'revert', paths)
+	def run(self, paths=None):
+		MutatingTortoiseSvnCommand.run(self, 'revert', paths, True)
 
 
 class SvnLogCommand(TortoiseSvnCommand):
-	def run(self, edit, paths=None):
+	def run(self, paths=None):
 		TortoiseSvnCommand.run(self, 'log', paths)
 
 
 class SvnDiffCommand(TortoiseSvnCommand):
-	def run(self, edit, paths=None):
+	def run(self, paths=None):
 		TortoiseSvnCommand.run(self, 'diff', paths)
 
 
 class SvnBlameCommand(TortoiseSvnCommand):
-	def run(self, edit, paths=None):
+	def run(self, paths=None):
 		TortoiseSvnCommand.run(self, 'blame', paths)
+
+	def is_visible(self, paths=None):
+		if paths:
+			file = '*'.join(paths)
+		else:
+			file = self.activeView().file_name()
+		return os.path.isfile(file)
