@@ -3,12 +3,12 @@ import sublime_plugin
 import os
 import subprocess
 
-class TortoiseSvnCommand(sublime_plugin.WindowCommand):
+class TortoiseSvnCommand(sublime_plugin.TextCommand):
 	def run(self, cmd, paths=None):
 		if paths:
 			dir = '*'.join(paths)
 		else:
-			dir = self.activeView().file_name()
+			dir = self.view.file_name()
 
 		settings = sublime.load_settings('TortoiseSVN.sublime-settings')
 		tortoiseproc_path = settings.get('tortoiseproc_path')
@@ -46,30 +46,30 @@ class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
 
 
 class SvnUpdateCommand(MutatingTortoiseSvnCommand):
-	def run(self, paths=None):
+	def run(self, edit, paths=None):
 		MutatingTortoiseSvnCommand.run(self, 'update', paths)
 
 
 class SvnCommitCommand(TortoiseSvnCommand):
-	def run(self, paths=None):
+	def run(self, edit, paths=None):
 		TortoiseSvnCommand.run(self, 'commit', paths)
 
 
 class SvnRevertCommand(MutatingTortoiseSvnCommand):
-	def run(self, paths=None):
+	def run(self, edit, paths=None):
 		MutatingTortoiseSvnCommand.run(self, 'revert', paths)
 
 
 class SvnLogCommand(TortoiseSvnCommand):
-	def run(self, paths=None):
+	def run(self, edit, paths=None):
 		TortoiseSvnCommand.run(self, 'log', paths)
 
 
 class SvnDiffCommand(TortoiseSvnCommand):
-	def run(self, paths=None):
+	def run(self, edit, paths=None):
 		TortoiseSvnCommand.run(self, 'diff', paths)
 
 
 class SvnBlameCommand(TortoiseSvnCommand):
-	def run(self, paths=None):
+	def run(self, edit, paths=None):
 		TortoiseSvnCommand.run(self, 'blame', paths)
