@@ -5,7 +5,7 @@ import os.path
 import subprocess
 
 class TortoiseSvnCommand(sublime_plugin.WindowCommand):
-	def run(self, cmd, paths=None):
+	def run(self, cmd, paths=None, isHung=False):
 		if paths:
 			dir = '*'.join(paths)
 		else:
@@ -26,12 +26,13 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
 		# This is required, cause of ST must wait TortoiseSVN update then revert
 		# the file. Otherwise the file reverting occur before SVN update, if the
 		# file changed the file content in ST is older.
-		proce.communicate()
+		if isHung:
+			proce.communicate()
 
 
 class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
 	def run(self, cmd, paths=None):
-		TortoiseSvnCommand.run(self, cmd, paths)
+		TortoiseSvnCommand.run(self, cmd, paths, True)
 		
 		self.view = sublime.active_window().active_view()
 		(row,col) = self.view.rowcol(self.view.sel()[0].begin())
