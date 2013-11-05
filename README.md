@@ -1,15 +1,15 @@
 sublime-TortoiseSVN
 ===================
 
-sublime-TortoiseSVN is tiny and simple plugin for sublime text.
-It's behavior seems [subclipse](http://subclipse.tigris.org/) in [Eclipse](http://www.eclipse.org/).
-**It's need TortoiseSVN and TortoiseSVN command line tools(TortoiseProc.exe) in Windows**
+sublime-TortoiseSVN is a tiny and simple plugin for [Sublime Text](http://www.sublimetext.com) .
+It's behavior is similar to [subclipse](http://subclipse.tigris.org/) in [Eclipse](http://www.eclipse.org/).
+**It runs only on Windows and needs the TortoiseSVN and TortoiseSVN command line tools (TortoiseProc.exe).**
 
 Usage
 -----
-
-your can install it by [Sublime Package Control](http://wbond.net/sublime_packages/package_control),
-then configure TortoiseSVN.sublime-settings.
+Install it using [Sublime Package Control](http://wbond.net/sublime_packages/package_control).
+If TortoiseSVN is not installed at `C:\\Program Files\\TortoiseSVN\\bin\\TortoiseProc.exe`, specify the correct path
+by setting property "tortoiseproc_path" in your TortoiseSVN.sublime-settings file. 
 
 - [alt+c] : commit current file. 
 - [alt+u] : update current file. 
