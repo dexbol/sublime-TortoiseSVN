@@ -5,11 +5,11 @@ import os.path
 import subprocess
 
 class TortoiseSvnCommand(sublime_plugin.WindowCommand):
-	def run(self, cmd, view, paths=None):
+	def run(self, cmd, paths=None):
 		if paths:
 			dir = '*'.join(paths)
 		else:
-			dir = view.file_name()
+			dir = sublime.active_window().active_view().file_name()
 
 
 		settings = sublime.load_settings('TortoiseSVN.sublime-settings')
@@ -30,14 +30,13 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
 
 
 class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
-	def run(self, cmd, paths=None, isRevertView=False):
-		self.view = sublime.active_window().active_view()
-		TortoiseSvnCommand.run(self, cmd, self.view, paths)
+	def run(self, cmd, paths=None):
+		TortoiseSvnCommand.run(self, cmd, paths)
 		
-		if isRevertView :
-			(row,col) = self.view.rowcol(self.view.sel()[0].begin())
-			self.lastLine = str(row + 1);
-			sublime.set_timeout(self.revert, 100)
+		self.view = sublime.active_window().active_view()
+		(row,col) = self.view.rowcol(self.view.sel()[0].begin())
+		self.lastLine = str(row + 1);
+		sublime.set_timeout(self.revert, 100)
 
 	def revert(self):
 		self.view.run_command('revert')
@@ -49,7 +48,7 @@ class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
 
 class SvnUpdateCommand(MutatingTortoiseSvnCommand):
 	def run(self, paths=None):
-		MutatingTortoiseSvnCommand.run(self, 'update', paths, True)
+		MutatingTortoiseSvnCommand.run(self, 'update', paths)
 
 
 class SvnCommitCommand(TortoiseSvnCommand):
@@ -59,7 +58,7 @@ class SvnCommitCommand(TortoiseSvnCommand):
 
 class SvnRevertCommand(MutatingTortoiseSvnCommand):
 	def run(self, paths=None):
-		MutatingTortoiseSvnCommand.run(self, 'revert', paths, True)
+		MutatingTortoiseSvnCommand.run(self, 'revert', paths)
 
 
 class SvnLogCommand(TortoiseSvnCommand):
