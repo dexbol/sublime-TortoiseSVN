@@ -1,8 +1,9 @@
 [
 	{ "caption": "-" },
-	{ "caption": "TortoiseSVN Update", "command": "svn_update", "args": {"paths":[]}},
-	{ "caption": "TortoiseSVN Commit", "command": "svn_commit", "args": {"paths":[]}},
-	{ "caption": "TortoiseSVN Revert", "command": "svn_revert", "args": {"paths":[]}},
-	{ "caption": "TortoiseSVN Log", "command": "svn_log", "args": {"paths":[]}},
+	{ "caption": "SVN Update", "command": "svn_update", "args": {"paths":[]}},
+	{ "caption": "SVN  Commit", "command": "svn_commit", "args": {"paths":[]}},
+	{ "caption": "SVN Revert", "command": "svn_revert", "args": {"paths":[]}},
+	{ "caption": "SVN Log", "command": "svn_log", "args": {"paths":[]}},
+	{ "caption": "SVN Blame", "command": "svn_blame", "args": {"paths":[]}},
 	{ "caption": "-", "id": "end" }
 ]
