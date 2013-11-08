@@ -1,0 +1,8 @@
+Sublime-TortoiseSVN 1.3.0 changelog
+=============================
+
+NEW FEATURES
+------------
+
+- Add "SVN Blame" command.
+- Improve SideBar menu.
