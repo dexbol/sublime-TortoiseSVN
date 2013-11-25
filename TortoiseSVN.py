@@ -6,12 +6,11 @@ import subprocess
 
 class TortoiseSvnCommand(sublime_plugin.WindowCommand):
 	def run(self, cmd, paths=None, isHung=False):
-		if paths:
-			dir = '*'.join(paths)
-		else:
-			dir = sublime.active_window().active_view().file_name()
+		dir = self.getPath(paths)
 
-
+		if not dir:
+			return
+			
 		settings = sublime.load_settings('TortoiseSVN.sublime-settings')
 		tortoiseproc_path = settings.get('tortoiseproc_path')
 
@@ -28,6 +27,16 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
 		# file changed the file content in ST is older.
 		if isHung:
 			proce.communicate()
+
+	def getPath(self, paths):
+		path = None
+		if paths:
+			path = '*'.join(paths)
+		else:
+			view = sublime.active_window().active_view()
+			path = view.file_name() if view else None
+
+		return path
 
 
 class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
@@ -77,8 +86,5 @@ class SvnBlameCommand(TortoiseSvnCommand):
 		TortoiseSvnCommand.run(self, 'blame', paths)
 
 	def is_visible(self, paths=None):
-		if paths:
-			file = '*'.join(paths)
-		else:
-			file = self.activeView().file_name()
-		return os.path.isfile(file)
+		file = self.getPath(paths)
+		return os.path.isfile(file) if file else False
