@@ -1,3 +1,5 @@
 {
+	// Auto close update dialog when no errors, conflicts and merges
+	"autoCloseUpdateDialog": false,
 	"tortoiseproc_path": "C:\\Program Files\\TortoiseSVN\\bin\\TortoiseProc.exe"
 }

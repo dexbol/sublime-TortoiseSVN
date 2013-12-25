@@ -37,5 +37,7 @@ If your TortoiseProc.exe path is not the default, please modify the path by sele
 The default setting is:
 
 	{
-		"tortoiseproc_path": "C:\\Program Files\\TortoiseSVN\\bin\\TortoiseProc.exe"
-	}
+        // Auto close update dialog when no errors, conflicts and merges
+        "autoCloseUpdateDialog": false,
+        "tortoiseproc_path": "C:\\Program Files\\TortoiseSVN\\bin\\TortoiseProc.exe"
+    }

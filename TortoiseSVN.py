@@ -19,7 +19,7 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
 				' please config setting file', '\n   --sublime-TortoiseSVN']))
 			raise
 
-		proce = subprocess.Popen('"' + tortoiseproc_path + '"' + ' /closeonend:3' + 
+		proce = subprocess.Popen('"' + tortoiseproc_path + '"' + 
 			' /command:' + cmd + ' /path:"%s"' % dir , stdout=subprocess.PIPE)
 
 		# This is required, cause of ST must wait TortoiseSVN update then revert
@@ -58,7 +58,9 @@ class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
 
 class SvnUpdateCommand(MutatingTortoiseSvnCommand):
 	def run(self, paths=None):
-		MutatingTortoiseSvnCommand.run(self, 'update', paths)
+		settings = sublime.load_settings('TortoiseSVN.sublime-settings')
+		closeonend = '3' if True == settings.get('autoCloseUpdateDialog') else '0'
+		MutatingTortoiseSvnCommand.run(self, 'update /closeonend:'+closeonend, paths)
 
 
 class SvnCommitCommand(TortoiseSvnCommand):

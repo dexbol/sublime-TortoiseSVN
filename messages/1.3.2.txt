@@ -1,0 +1,5 @@
+Sublime-TortoiseSVN 1.3.2 changelog
+=============================
+
+- Add: config:autoCloseUpdateDialog, default false.
+    Auto close update dialog when no errors, conflicts and merges
