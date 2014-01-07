@@ -65,7 +65,7 @@ class SvnUpdateCommand(MutatingTortoiseSvnCommand):
 
 class SvnCommitCommand(TortoiseSvnCommand):
 	def run(self, paths=None):
-		TortoiseSvnCommand.run(self, 'commit', paths)
+		TortoiseSvnCommand.run(self, 'commit /closeonend:3', paths)
 
 
 class SvnRevertCommand(MutatingTortoiseSvnCommand):
