@@ -44,7 +44,7 @@ class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
 		TortoiseSvnCommand.run(self, cmd, paths, True)
 		
 		self.view = sublime.active_window().active_view()
-		(row,col) = self.view.rowcol(self.view.sel()[0].begin())
+		row, col = self.view.rowcol(self.view.sel()[0].begin())
 		self.lastLine = str(row + 1);
 		sublime.set_timeout(self.revert, 100)
 
@@ -59,8 +59,10 @@ class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
 class SvnUpdateCommand(MutatingTortoiseSvnCommand):
 	def run(self, paths=None):
 		settings = sublime.load_settings('TortoiseSVN.sublime-settings')
-		closeonend = '3' if True == settings.get('autoCloseUpdateDialog') else '0'
-		MutatingTortoiseSvnCommand.run(self, 'update /closeonend:'+closeonend, paths)
+		closeonend = ('3' if True == settings.get('autoCloseUpdateDialog')
+			else '0')
+		MutatingTortoiseSvnCommand.run(self, 'update /closeonend:' + closeonend, 
+			paths)
 
 
 class SvnCommitCommand(TortoiseSvnCommand):
@@ -85,7 +87,10 @@ class SvnDiffCommand(TortoiseSvnCommand):
 
 class SvnBlameCommand(TortoiseSvnCommand):
 	def run(self, paths=None):
-		TortoiseSvnCommand.run(self, 'blame', paths)
+		view = sublime.active_window().active_view()
+		row = view.rowcol(view.sel()[0].begin())[0] + 1
+
+		TortoiseSvnCommand.run(self, 'blame /line:' + str(row), paths)
 
 	def is_visible(self, paths=None):
 		file = self.getPath(paths)
