@@ -5,5 +5,6 @@
 	{ "caption": "SVN Revert", "command": "svn_revert", "args": {"paths":[]}},
 	{ "caption": "SVN Log", "command": "svn_log", "args": {"paths":[]}},
 	{ "caption": "SVN Blame", "command": "svn_blame", "args": {"paths":[]}},
+	{ "caption": "SVN Switch", "command": "svn_switch", "args": {"paths":[]}},
 	{ "caption": "-", "id": "end" }
 ]

@@ -10,7 +10,7 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
 
 		if not dir:
 			return
-			
+
 		settings = sublime.load_settings('TortoiseSVN.sublime-settings')
 		tortoiseproc_path = settings.get('tortoiseproc_path')
 
@@ -19,7 +19,7 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
 				' please config setting file', '\n   --sublime-TortoiseSVN']))
 			raise
 
-		proce = subprocess.Popen('"' + tortoiseproc_path + '"' + 
+		proce = subprocess.Popen('"' + tortoiseproc_path + '"' +
 			' /command:' + cmd + ' /path:"%s"' % dir , stdout=subprocess.PIPE)
 
 		# This is required, cause of ST must wait TortoiseSVN update then revert
@@ -42,7 +42,7 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
 class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
 	def run(self, cmd, paths=None):
 		TortoiseSvnCommand.run(self, cmd, paths, True)
-		
+
 		self.view = sublime.active_window().active_view()
 		row, col = self.view.rowcol(self.view.sel()[0].begin())
 		self.lastLine = str(row + 1);
@@ -61,7 +61,7 @@ class SvnUpdateCommand(MutatingTortoiseSvnCommand):
 		settings = sublime.load_settings('TortoiseSVN.sublime-settings')
 		closeonend = ('3' if True == settings.get('autoCloseUpdateDialog')
 			else '0')
-		MutatingTortoiseSvnCommand.run(self, 'update /closeonend:' + closeonend, 
+		MutatingTortoiseSvnCommand.run(self, 'update /closeonend:' + closeonend,
 			paths)
 
 
@@ -78,6 +78,11 @@ class SvnRevertCommand(MutatingTortoiseSvnCommand):
 class SvnLogCommand(TortoiseSvnCommand):
 	def run(self, paths=None):
 		TortoiseSvnCommand.run(self, 'log', paths)
+
+
+class SvnSwitchCommand(TortoiseSvnCommand):
+	def run(self, paths=None):
+		TortoiseSvnCommand.run(self, 'switch', paths)
 
 
 class SvnDiffCommand(TortoiseSvnCommand):
