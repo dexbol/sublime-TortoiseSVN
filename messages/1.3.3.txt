@@ -1,0 +1,7 @@
+Sublime-TortoiseSVN 1.3.3 changelog
+===================================
+
+- Add: config:autoCloseCommitDialog, default true.
+    Auto close commit dialog when no errors, conflicts and merges
+
+- Add: svn add command
