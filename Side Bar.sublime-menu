@@ -1,5 +1,6 @@
 [
 	{ "caption": "-" },
+	{ "caption": "SVN Add", "command": "svn_add", "args": {"paths":[]}},
 	{ "caption": "SVN Update", "command": "svn_update", "args": {"paths":[]}},
 	{ "caption": "SVN Commit", "command": "svn_commit", "args": {"paths":[]}},
 	{ "caption": "SVN Revert", "command": "svn_revert", "args": {"paths":[]}},
