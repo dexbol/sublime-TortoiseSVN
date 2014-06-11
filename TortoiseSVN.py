@@ -16,7 +16,7 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
 
         if not os.path.isfile(tortoiseproc_path):
             sublime.error_message('can\'t find TortoiseProc.exe,'
-            	' please config setting file' '\n   --sublime-TortoiseSVN')
+                ' please config setting file' '\n   --sublime-TortoiseSVN')
             raise
 
         proce = subprocess.Popen('"' + tortoiseproc_path + '"' + 
