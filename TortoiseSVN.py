@@ -6,7 +6,8 @@ import subprocess
 
 class TortoiseSvnCommand(sublime_plugin.WindowCommand):
     def run(self, cmd, paths=None, isHung=False):
-        if "${PROJECT_PATH}" in path:
+        for index, path in enumerate(paths):
+            if "${PROJECT_PATH}" in path:
                 project_data  = sublime.active_window().project_data()
                 project_folder = project_data['folders'][0]['path']
                 path = path.replace("${PROJECT_PATH}", project_folder);
