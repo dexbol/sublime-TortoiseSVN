@@ -26,6 +26,10 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
                 ' please config setting file' '\n   --sublime-TortoiseSVN')
             raise
 
+        # If the command is repostatus I just change the path to the view's dir
+        if (cmd == "repostatus" and os.path.isfile(dir)):
+            dir = (os.path.dirname(dir))
+
         proce = subprocess.Popen('"' + tortoiseproc_path + '"' + 
             ' /command:' + cmd + ' /path:"%s"' % dir , stdout=subprocess.PIPE)
 
@@ -101,6 +105,10 @@ class SvnSwitchCommand(TortoiseSvnCommand):
 class SvnDiffCommand(TortoiseSvnCommand):
     def run(self, paths=None):
         TortoiseSvnCommand.run(self, 'diff', paths)
+
+class SvnRepostatusCommand(TortoiseSvnCommand):
+    def run(self, paths=None):
+         TortoiseSvnCommand.run(self, 'repostatus', paths)
 
 
 class SvnBlameCommand(TortoiseSvnCommand):

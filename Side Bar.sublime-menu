@@ -7,5 +7,6 @@
 	{ "caption": "SVN Log", "command": "svn_log", "args": {"paths":[]}},
 	{ "caption": "SVN Blame", "command": "svn_blame", "args": {"paths":[]}},
 	{ "caption": "SVN Switch", "command": "svn_switch", "args": {"paths":[]}},
+        { "caption": "SVN CheckModifications",   "command": "svn_repostatus",   "args": {"paths":[]}},
 	{ "caption": "-", "id": "end" }
 ]
