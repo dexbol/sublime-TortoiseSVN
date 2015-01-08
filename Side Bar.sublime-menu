@@ -8,6 +8,7 @@
 
 			{ "caption": "Add", "command": "svn_add", "args": {"paths":[]}},
 			{ "caption": "Update", "command": "svn_update", "args": {"paths":[]}},
+			{ "caption": "Diff", "command": "svn_diff", "args": {"paths":[]}, },
 			{ "caption": "Commit", "command": "svn_commit", "args": {"paths":[]}},
 			{ "caption": "Revert", "command": "svn_revert", "args": {"paths":[]}},
 			{ "caption": "Log", "command": "svn_log", "args": {"paths":[]}},
