@@ -1,11 +1,21 @@
 [
 	{ "caption": "-" },
-	{ "caption": "SVN Add", "command": "svn_add", "args": {"paths":[]}},
-	{ "caption": "SVN Update", "command": "svn_update", "args": {"paths":[]}},
-	{ "caption": "SVN Commit", "command": "svn_commit", "args": {"paths":[]}},
-	{ "caption": "SVN Revert", "command": "svn_revert", "args": {"paths":[]}},
-	{ "caption": "SVN Log", "command": "svn_log", "args": {"paths":[]}},
-	{ "caption": "SVN Blame", "command": "svn_blame", "args": {"paths":[]}},
-	{ "caption": "SVN Switch", "command": "svn_switch", "args": {"paths":[]}},
+	{ "caption": "SVN",
+
+	"children":
+	[
+		{ "caption": "-" },
+
+			{ "caption": "Add", "command": "svn_add", "args": {"paths":[]}},
+			{ "caption": "Update", "command": "svn_update", "args": {"paths":[]}},
+			{ "caption": "Commit", "command": "svn_commit", "args": {"paths":[]}},
+			{ "caption": "Revert", "command": "svn_revert", "args": {"paths":[]}},
+			{ "caption": "Log", "command": "svn_log", "args": {"paths":[]}},
+			{ "caption": "Blame", "command": "svn_blame", "args": {"paths":[]}},
+			{ "caption": "Switch", "command": "svn_switch", "args": {"paths":[]}},
+
+		{ "caption": "-" }
+	]},
+
 	{ "caption": "-", "id": "end" }
 ]
