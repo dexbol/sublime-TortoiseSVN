@@ -118,3 +118,8 @@ class SvnBlameCommand(TortoiseSvnCommand):
 class SvnAddCommand(TortoiseSvnCommand):
     def run(self, paths=None):
         TortoiseSvnCommand.run(self, 'add', paths)
+
+
+class SvnBranchCommand(TortoiseSvnCommand):
+    def run(self, paths=None):
+        TortoiseSvnCommand.run(self, 'copy', paths)
