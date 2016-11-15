@@ -27,7 +27,7 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
                 ' please config setting file' '\n   --sublime-TortoiseSVN')
             raise
 
-        cmd = '"' + tortoiseproc_path + '"' + 
+        cmd = '"' + tortoiseproc_path + '"' + \
             ' /command:' + cmd + ' /path:"%s"' % dir
 
         proce = subprocess.Popen(cmd.encode(pathEncoding) if pathEncoding else cmd , stdout=subprocess.PIPE)
