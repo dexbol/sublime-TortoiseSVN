@@ -1,5 +1,7 @@
 [
-  { "caption": "TortoiseSVN: Blame", "command": "svn_blame" },
+	{ "caption": "TortoiseSVN: Add", "command": "svn_add" },
+	{ "caption": "TortoiseSVN: Blame", "command": "svn_blame" },
+	{ "caption": "TortoiseSVN: Diff", "command": "svn_diff" },
 	{ "caption": "TortoiseSVN: Update", "command": "svn_update" },
 	{ "caption": "TortoiseSVN: Commit", "command": "svn_commit" },
 	{ "caption": "TortoiseSVN: Revert", "command": "svn_revert" },

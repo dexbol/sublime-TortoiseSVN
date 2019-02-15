@@ -77,11 +77,6 @@ class SvnUpdateCommand(MutatingTortoiseSvnCommand):
             paths)
 
 
-class SvnBlameCommand(TortoiseSvnCommand):
-    def run(self, paths=None):
-        TortoiseSvnCommand.run(self, 'blame', paths)
-
-
 class SvnCommitCommand(TortoiseSvnCommand):
     def run(self, paths=None):
         settings = self.get_setting()
