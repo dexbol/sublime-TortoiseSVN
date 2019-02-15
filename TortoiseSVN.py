@@ -12,12 +12,12 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
                   project_data  = sublime.active_window().project_data()
                   project_folder = project_data['folders'][0]['path']
                   path = path.replace("${PROJECT_PATH}", project_folder);
-                  paths[index] = path	
+                  paths[index] = path
         dir = self.get_path(paths)
 
         if not dir:
             return
-            
+
         settings = self.get_setting()
         tortoiseproc_path = settings.get('tortoiseproc_path')
         pathEncoding = settings.get('pathEncoding')
@@ -27,8 +27,7 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
                 ' please config setting file' '\n   --sublime-TortoiseSVN')
             raise
 
-        cmd = '"' + tortoiseproc_path + '"' + 
-            ' /command:' + cmd + ' /path:"%s"' % dir
+        cmd = '"' + tortoiseproc_path + '"' + ' /command:' + cmd + ' /path:"%s"' % dir
 
         proce = subprocess.Popen(cmd.encode(pathEncoding) if pathEncoding else cmd , stdout=subprocess.PIPE)
 
@@ -55,7 +54,7 @@ class TortoiseSvnCommand(sublime_plugin.WindowCommand):
 class MutatingTortoiseSvnCommand(TortoiseSvnCommand):
     def run(self, cmd, paths=None):
         TortoiseSvnCommand.run(self, cmd, paths, True)
-        
+
         self.view = sublime.active_window().active_view()
         row, col = self.view.rowcol(self.view.sel()[0].begin())
         self.lastLine = str(row + 1);
@@ -74,8 +73,13 @@ class SvnUpdateCommand(MutatingTortoiseSvnCommand):
         settings = self.get_setting()
         closeonend = ('3' if True == settings.get('autoCloseUpdateDialog')
             else '0')
-        MutatingTortoiseSvnCommand.run(self, 'update /closeonend:' + closeonend, 
+        MutatingTortoiseSvnCommand.run(self, 'update /closeonend:' + closeonend,
             paths)
+
+
+class SvnBlameCommand(TortoiseSvnCommand):
+    def run(self, paths=None):
+        TortoiseSvnCommand.run(self, 'blame', paths)
 
 
 class SvnCommitCommand(TortoiseSvnCommand):
